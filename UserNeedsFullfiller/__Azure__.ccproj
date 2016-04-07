@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>1.3.0</ProductVersion>
+    <ProjectGuid>{2fc68f50-88bf-4856-a990-66c4353c81f0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UserNeedsFullfiller</RootNamespace>
+    <AssemblyName>UserNeedsFullfiller</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>__Azure__</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuthentificatorService\AuthentificatorService.csproj">
+      <Name>AuthentificatorService</Name>
+      <Project>{c639b780-dd87-4687-8d65-da69b84a65d9}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AuthentificatorService</RoleName>
+    </ProjectReference>
+    <ProjectReference Include="..\ContentProvidersSimulator\ContentProvidersSimulator.csproj">
+      <Name>ContentProvidersSimulator</Name>
+      <Project>{5c165902-0244-4bad-9f1c-7748dedc12f6}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>ContentProvidersSimulator</RoleName>
+    </ProjectReference>
+    <ProjectReference Include="..\RequestorService\RequestorService.csproj">
+      <Name>RequestorService</Name>
+      <Project>{ed19b9bb-eadc-42d8-8b80-b7707895e3f4}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>RequestorService</RoleName>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUi\WebUi.csproj">
+      <Name>WebUi</Name>
+      <Project>{ae35c694-f732-4df6-8e3a-545097af5d69}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>WebUi</RoleName>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\Cloud Service\1.0\Visual Studio 10.0\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.CloudService.targets" />
+</Project>

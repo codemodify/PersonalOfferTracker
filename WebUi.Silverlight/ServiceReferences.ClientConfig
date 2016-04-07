@@ -1,0 +1,31 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IAuthentificatorService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IRequestorService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BingPortBinding" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://personaloffertracker.cloudapp.net:8081/AuthentificatorService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IAuthentificatorService"
+                contract="AuthentificatorService.IAuthentificatorService"
+                name="BasicHttpBinding_IAuthentificatorService" />
+            <endpoint address="http://personaloffertracker.cloudapp.net:8082/RequestorService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IRequestorService"
+                contract="RequestorService.IRequestorService" name="BasicHttpBinding_IRequestorService" />
+            <endpoint address="http://api.bing.net:80/soap.asmx" binding="basicHttpBinding"
+                bindingConfiguration="BingPortBinding" contract="BingService.BingPortType"
+                name="BingPort" />
+        </client>
+    </system.serviceModel>
+</configuration>

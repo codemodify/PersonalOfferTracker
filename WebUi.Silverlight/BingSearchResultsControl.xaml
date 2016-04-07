@@ -1,0 +1,22 @@
+﻿<UserControl 
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+    x:Class="WebUi.Silverlight.BingSearchResultsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="434" d:DesignWidth="208" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit">
+
+    <toolkit:TwilightBlueTheme Name="twilightBlueTheme1">
+        <ListBox ItemsSource="{Binding self}" Background="Transparent" Name="BingSearchResults">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <HyperlinkButton TargetName="_blank" Content="{Binding Path=Label}" NavigateUri="{Binding Path=Url}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </toolkit:TwilightBlueTheme>
+</UserControl>

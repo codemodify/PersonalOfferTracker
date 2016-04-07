@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RequestorService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RequestorService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/RequestorService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" />
+  <xs:complexType name="SearchEntityProxy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Category" type="xs:int" />
+      <xs:element minOccurs="0" name="CategoryAsValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CategoryCustom" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" minOccurs="0" name="CategoryEnum" type="q1:Category" />
+      <xs:element minOccurs="0" name="CurrentHash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndPrice" type="xs:int" />
+      <xs:element minOccurs="0" name="EndPriceCustom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Keywords" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastHash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NotifyOnNextOffer" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" minOccurs="0" name="PriceRangeEnum" type="q2:PriceRange" />
+      <xs:element minOccurs="0" name="Specifications" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartPrice" type="xs:int" />
+      <xs:element minOccurs="0" name="StartPriceCustom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" type="xs:int" />
+      <xs:element minOccurs="0" name="StateCustom" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" minOccurs="0" name="StateEnum" type="q3:State" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchEntityProxy" nillable="true" type="tns:SearchEntityProxy" />
+  <xs:complexType name="ArrayOfSearchResultEntityProxy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchResultEntityProxy" nillable="true" type="tns:SearchResultEntityProxy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchResultEntityProxy" nillable="true" type="tns:ArrayOfSearchResultEntityProxy" />
+  <xs:complexType name="SearchResultEntityProxy">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" minOccurs="0" name="CategoryEnum" type="q4:Category" />
+      <xs:element minOccurs="0" name="EndPrice" type="xs:int" />
+      <xs:element minOccurs="0" name="EndPriceCustom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Offer" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" minOccurs="0" name="PriceRangeEnum" type="q5:PriceRange" />
+      <xs:element minOccurs="0" name="SearchId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Specifications" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartPrice" type="xs:int" />
+      <xs:element minOccurs="0" name="StartPriceCustom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" type="xs:int" />
+      <xs:element minOccurs="0" name="StateCustom" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Helpers.Searches.Definitions" minOccurs="0" name="StateEnum" type="q6:State" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchResultEntityProxy" nillable="true" type="tns:SearchResultEntityProxy" />
+</xs:schema>

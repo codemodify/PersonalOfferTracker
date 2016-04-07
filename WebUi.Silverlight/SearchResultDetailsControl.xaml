@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="WebUi.Silverlight.SearchResultDetailsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="160" d:DesignWidth="749" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <toolkit:ShinyRedTheme HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="twilightBlueTheme1" VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+
+                <sdk:Label Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="120" Content="Offer:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="White" FontWeight="Bold" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="55,12,0,0" Name="Offer" VerticalAlignment="Top" Width="338" Text="{Binding Path=Offer}" />
+
+                <sdk:Label Content="Specifications:" Height="28" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="12,46,0,0" Name="label2" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="120" Foreground="White" FontWeight="Bold" />
+                <TextBox HorizontalAlignment="Left" Margin="12,66,0,0" Name="Specifications" VerticalAlignment="Top" Height="78" Width="381" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding Path=Specifications}" />
+
+                <sdk:Label Content="State:" Height="28" HorizontalAlignment="Left" Margin="411,12,0,0" Name="label4" VerticalAlignment="Top" Width="120" Foreground="White" FontWeight="Bold" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="478,12,0,0" Name="State" VerticalAlignment="Top" Width="120" /> <!--SelectedIndex="{Binding State}"-->
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="604,12,0,0" Name="StateCustom" VerticalAlignment="Top" Width="120" Visibility="Visible" Text="{Binding Path=StateCustom}" />
+
+                <Rectangle Height="79" HorizontalAlignment="Left" Margin="400,65,0,0" Name="rectangle1" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="340" />
+                <sdk:Label Height="26" HorizontalAlignment="Left" Margin="676,54,0,0" Name="label7" VerticalAlignment="Top" Width="54" FontStyle="Italic" Foreground="White" FontWeight="ExtraBold" FontSize="14" Content=" Price " Background="#FF434C56" HorizontalContentAlignment="Center"></sdk:Label>
+
+                <sdk:Label Content="Start:" Height="28" HorizontalAlignment="Left" Margin="411,77,0,0" Name="label5" VerticalAlignment="Top" Width="120" Foreground="White" FontWeight="Bold" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="478,77,0,0" Name="StartPrice" VerticalAlignment="Top" Width="120" /> <!--SelectedIndex="{Binding StartPrice}"-->
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="604,77,0,0" Name="StartPriceCustom" VerticalAlignment="Top" Width="120" Visibility="Visible" Text="{Binding Path=StartPriceCustom}" />
+
+                <sdk:Label Content="End:" Height="28" HorizontalAlignment="Left" Margin="411,106,0,0" Name="label6" VerticalAlignment="Top" Width="120" Foreground="White" FontWeight="Bold" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="478,106,0,0" Name="EndPrice" VerticalAlignment="Top" Width="120" /> <!--SelectedIndex="{Binding EndPrice}"-->
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="604,106,0,0" Name="EndPriceCustom" VerticalAlignment="Top" Width="120" Visibility="Visible" Text="{Binding Path=EndPriceCustom}" />
+            </Grid>
+        </toolkit:ShinyRedTheme>
+
+    </Grid>
+</UserControl>

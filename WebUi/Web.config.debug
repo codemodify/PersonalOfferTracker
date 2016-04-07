@@ -1,0 +1,152 @@
+﻿<?xml version="1.0"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=152368
+  -->
+<configuration>
+  <configSections>
+    <section name="microsoft.identityModel" type="Microsoft.IdentityModel.Configuration.MicrosoftIdentityModelSection, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+  </configSections>
+  <system.diagnostics>
+    <trace>
+      <listeners>
+        <add type="Microsoft.WindowsAzure.Diagnostics.DiagnosticMonitorTraceListener, Microsoft.WindowsAzure.Diagnostics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="AzureDiagnostics">
+          <filter type="" />
+        </add>
+      </listeners>
+    </trace>
+  </system.diagnostics>
+  <connectionStrings>
+    <add name="ApplicationServices" connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <location path="FederationMetadata">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+  <system.web>
+    <customErrors mode="Off" />
+    <httpRuntime requestValidationMode="2.0" />
+    <authorization>
+      <deny users="?" />
+    </authorization>
+    <authentication mode="None" />
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Web.Abstractions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Routing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+      </assemblies>
+    </compilation>
+    <!--Commented out by FedUtil-->
+    <!--<authentication mode="Forms"><forms loginUrl="~/Account/LogOn" timeout="2880" /></authentication>-->
+    <membership>
+      <providers>
+        <clear />
+        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="false" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/" />
+      </providers>
+    </membership>
+    <profile>
+      <providers>
+        <clear />
+        <add name="AspNetSqlProfileProvider" type="System.Web.Profile.SqlProfileProvider" connectionStringName="ApplicationServices" applicationName="/" />
+      </providers>
+    </profile>
+    <roleManager enabled="false">
+      <providers>
+        <clear />
+        <add name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" connectionStringName="ApplicationServices" applicationName="/" />
+        <add name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" applicationName="/" />
+      </providers>
+    </roleManager>
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+      </namespaces>
+    </pages>
+    <httpModules>
+      <add name="WSFederationAuthenticationModule" type="Microsoft.IdentityModel.Web.WSFederationAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      <add name="SessionAuthenticationModule" type="Microsoft.IdentityModel.Web.SessionAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    </httpModules>
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules runAllManagedModulesForAllRequests="true">
+      <add name="WSFederationAuthenticationModule" type="Microsoft.IdentityModel.Web.WSFederationAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="managedHandler" />
+      <add name="SessionAuthenticationModule" type="Microsoft.IdentityModel.Web.SessionAuthenticationModule, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" preCondition="managedHandler" />
+    </modules>
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0" newVersion="2.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <appSettings>
+    <add key="FederationMetadataLocation" value="https://personaloffertracker.accesscontrol.windows.net/FederationMetadata/2007-06/FederationMetadata.xml" />
+  </appSettings>
+  <microsoft.identityModel>
+    <service>
+      <audienceUris mode="Never">
+        <add value="http://localhost:8080/" />
+      </audienceUris>
+      <federatedAuthentication>
+          <wsFederation passiveRedirectEnabled="true" issuer="https://personaloffertracker.accesscontrol.windows.net/v2/wsfederation" realm="http://localhost:8080" requireHttps="false" />
+        <cookieHandler requireSsl="false" />
+      </federatedAuthentication>
+      <applicationService>
+        <claimTypeRequired>
+            <!--Following are the claims offered by STS 'https://PersonalOfferTracker.accesscontrol.windows.net/'. Add or uncomment claims that you require by your application and then update the federation metadata of this application.-->
+            <claimType type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" optional="true" />
+            <claimType type="http://schemas.microsoft.com/ws/2008/06/identity/claims/role" optional="true" />
+
+            <claimType type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier" optional="true" />
+            <!--<claimType type="http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider" optional="true" />
+            <claimType type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" optional="true" />-->
+            
+            <!--<claimType type="http://schemas.microsoft.com/ws/2008/06/identity/claims/expiration" optional="true" />
+            <claimType type="http://www.facebook.com/claims/AccessToken" optional="true" />-->
+        </claimTypeRequired>
+      </applicationService>
+      <issuerNameRegistry type="Microsoft.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry, Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+        <trustedIssuers>
+          <add thumbprint="66A395E6D1ECAA08622041DFC0C4D8603A61C0B2" name="https://PersonalOfferTracker.accesscontrol.windows.net/" />
+        </trustedIssuers>
+      </issuerNameRegistry>
+      <certificateValidation certificateValidationMode="None" />
+    </service>
+  </microsoft.identityModel>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IAuthentificatorService" closeTimeout="00:01:00"
+          openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00"
+          allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard"
+          maxBufferSize="65536" maxBufferPoolSize="524288" maxReceivedMessageSize="65536"
+          messageEncoding="Text" textEncoding="utf-8" transferMode="Buffered"
+          useDefaultWebProxy="true">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384"
+            maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <security mode="None">
+            <transport clientCredentialType="None" proxyCredentialType="None"
+              realm="" />
+            <message clientCredentialType="UserName" algorithmSuite="Default" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://localhost:8081/AuthentificatorService.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IAuthentificatorService"
+        contract="AuthentificatorService.IAuthentificatorService" name="BasicHttpBinding_IAuthentificatorService" />
+    </client>
+  </system.serviceModel>
+</configuration>

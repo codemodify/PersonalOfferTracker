@@ -1,0 +1,6 @@
+
+WebUi                   -> 8080
+AuthenticatorService    -> 8081
+RequestorService        -> 8082
+
+Helpers.Storage         -> useDevStorage = set to false for production

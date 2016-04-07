@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="WebUi.Silverlight.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="428" d:DesignWidth="707" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" Loaded="UserControl_Loaded" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <toolkit:Accordion Grid.Column="0" Name="NavigationAccordion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <toolkit:Accordion.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=HeaderText}" FontWeight="Bold" />
+                </DataTemplate>
+            </toolkit:Accordion.ItemTemplate>
+            <toolkit:Accordion.ContentTemplate>
+                <DataTemplate>
+                    <ListBox ItemsSource="{Binding Content}" BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ItemText}" MouseLeftButtonUp="AccordionNavigationItemClicked" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DataTemplate>
+            </toolkit:Accordion.ContentTemplate>
+        </toolkit:Accordion>
+
+        <sdk:GridSplitter x:Name="grsplSplitter" Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="5" />
+
+        <sdk:Frame 
+            Grid.Column="2"
+            Name="FrameContent" 
+            />
+    </Grid>
+</UserControl>
